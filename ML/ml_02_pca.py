@@ -5,8 +5,10 @@ def pca(df, r):
     cols = df.columns
     
     #Zentrieren
+    means = []
     for col in cols:
         df[col] = df[col] - np.mean(df[col])
+        means.append(np.mean(df[col]))
         
     #Normieren der Varianz
     for col in cols:
@@ -31,4 +33,4 @@ def pca(df, r):
         pc.append(v[:,ri])
         ai.append(ud[:,ri])
         
-    return pc,ai,np.power(d, 2)/(n-1)
+    return pc,ai,np.power(d, 2)/(n-1), means
